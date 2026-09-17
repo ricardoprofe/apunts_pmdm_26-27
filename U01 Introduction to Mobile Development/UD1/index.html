@@ -11,6 +11,8 @@
         <link rel="prev" href="../..">
       
       
+        <link rel="next" href="../../U02%20Android%20basics/U02.1%20-%20Kotlin/">
+      
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.0">
@@ -574,6 +576,89 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3">
+        
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    U02 Android basics
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            U02 Android basics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../U02%20Android%20basics/U02.1%20-%20Kotlin/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit 2.1. The Kotlin language
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../U02%20Android%20basics/U02.2%20Basic%20Android/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit 2.2. Basic Android development
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1466,7 +1551,19 @@
 <h4 id="451-gradle-scripts">4.5.1 Gradle Scripts</h4>
 <h5 id="general-build-script">General Build Script</h5>
 <p>As mentioned, an Android project defines a general configuration script <code>build.gradle.kts</code> for the project, located in the root folder, and another located in the <code>app</code> folder, which refers to the application module itself.</p>
-<p>The content of the general build script will have the following structure:</p>
+<div class="admonition info">
+<p class="admonition-title">Gradle Kotlin DSL</p>
+<p><strong>Gradle Kotlin DSL</strong> is a way to write Gradle build scripts using the Kotlin programming language instead of Groovy. Its files use the extension <code>.gradle.kts</code>, for example <code>build.gradle.kts</code>.</p>
+<p>It is commonly used to configure how a project is compiled, including dependencies, plugins, and build tasks. </p>
+<p>Compared with Groovy, Kotlin DSL provides better autocomplete, type checking, refactoring, and IDE support in IntelliJ IDEA and Android Studio.</p>
+<p>For example:</p>
+<div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">implementation</span><span class="p">(</span><span class="s">"org.jetbrains.kotlin:kotlin-stdlib"</span><span class="p">)</span>
+</code></pre></div></td></tr></tbody></table></div>
+<p>is written with Kotlin syntax, while the equivalent Groovy DSL usually looks like:</p>
+<div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">implementation</span><span class="w"> </span><span class="s1">'org.jetbrains.kotlin:kotlin-stdlib'</span>
+</code></pre></div></td></tr></tbody></table></div>
+</div>
+<p>The content of the <strong>general build script</strong> will have the following structure:</p>
 <div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1475,6 +1572,10 @@
 <span class="w">    </span><span class="n">alias</span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="na">plugins</span><span class="p">.</span><span class="na">kotlin</span><span class="p">.</span><span class="na">compose</span><span class="p">)</span><span class="w"> </span><span class="n">apply</span><span class="w"> </span><span class="kc">false</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></tbody></table></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Although by default plugins are loaded immediately, we can use the <code>apply false</code> syntax to load them later in the configuration files of each module.</p>
+</div>
 <p>The 2 lines in the plugins section add the Android app and Jetpack Compose plugins to the project, but does not apply it to the root project itself, they are made available for submodules (like <code>app/</code>)</p>
 <p>They are aliases to the plugins used, defined in the version catalog file <code>libs.versions.toml</code>.</p>
 <p>In previous versions, plugins were specified in this same file, but now this catalog is used to manage the versions of plugins and dependencies, to facilitate maintenance and version updates, since all are defined in the same place.</p>
@@ -1505,7 +1606,6 @@
 <div class="admonition info">
 <p>The utility of these plugins is to correctly configure the project build process, ensuring that the Kotlin code is compiled properly and packaged correctly for Android.</p>
 </div>
-<p>Although by default plugins are loaded immediately, we can use the <code>apply false</code> syntax to load them later in the configuration files of each module.</p>
 <h5 id="module-scripts">Module Scripts</h5>
 <p>The build file most important is the <code>build.gradle.kts</code> of the <strong>application module</strong> itself. The main blocks that compose it are the following:</p>
 <div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1621,7 +1721,7 @@
 <span class="w">    </span><span class="n">debugImplementation</span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="na">androidx</span><span class="p">.</span><span class="na">compose</span><span class="p">.</span><span class="na">ui</span><span class="p">.</span><span class="na">tooling</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></tbody></table></div>
-<p>Among these dependencies, we highlight the Jetpack libraries (<code>libs.androidx.core.ktx</code>), as well as the Compose libraries (<code>libs.androidx.compose...</code>), among others. Note that we are also using aliases here, and the name and versions of the libraries are specified in the <code>gradle/libs.versions.toml</code> file.</p>
+<p>Among these dependencies, we highlight the <strong>Jetpack libraries (<code>libs.androidx.core.ktx</code>)</strong>, as well as the <strong>Compose libraries (<code>libs.androidx.compose...</code>)</strong>, among others. Note that we are also using aliases here, and the name and versions of the libraries are specified in the <code>gradle/libs.versions.toml</code> file.</p>
 <p>At this point, we we can see how, unlike other types of Gradle applications, the main class (<code>mainClass</code>) is not specified, and the <code>application</code> section doesn't even exist. As we will see next, the entry point will be specified in the Manifest file.</p>
 <h4 id="452-the-androidmanifestxml-file-and-application-components">4.5.2 The AndroidManifest.xml File and Application Components</h4>
 <p>The Manifest file is a file specific to each application that contains information about it. This information is used by the Android build tools, the system itself, and Google Play.</p>
