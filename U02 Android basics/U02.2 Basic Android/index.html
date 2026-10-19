@@ -543,8 +543,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-theming-and-styling" class="md-nav__link">
-    4. Theming and Styling
+  <a href="#modifiers" class="md-nav__link">
+    Modifiers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-theming-and-styling" class="md-nav__link">
+    5. Theming and Styling
   </a>
   
 </li>
@@ -783,8 +790,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-theming-and-styling" class="md-nav__link">
-    4. Theming and Styling
+  <a href="#modifiers" class="md-nav__link">
+    Modifiers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-theming-and-styling" class="md-nav__link">
+    5. Theming and Styling
   </a>
   
 </li>
@@ -1474,7 +1488,108 @@ Here is an example of how to use modifiers to set the padding and background col
 <li><a href="https://developer.android.com/develop/ui/compose/components/badges">Badges</a></li>
 <li><a href="https://developer.android.com/develop/ui/compose/components/chip">Chips</a></li>
 </ul>
-<h2 id="4-theming-and-styling">4. Theming and Styling</h2>
+<h2 id="modifiers">Modifiers</h2>
+<p>Modifiers are used to modify the appearance and behavior of composables. They can be used to change the size, position, padding, margin, and other properties of a composable.</p>
+<p>When you make a new composable, you should always add a <code>modifier</code> parameter to it. This allows the user of your composable to customize its appearance and behavior. The composable parameter should be the first optional parameter of the function, and it should have a default value of <code>Modifier</code>. This way, the user can choose to pass a modifier or not.</p>
+<div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">MyComposable</span><span class="p">(</span>
+<span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// content</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></tbody></table></div>
+<p>The most common modifiers are:</p>
+<p><strong>Layout Modifiers</strong></p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>padding</td>
+<td>Adds space around a composable's content.</td>
+</tr>
+<tr>
+<td>size</td>
+<td>Sets a specific size for a composable.</td>
+</tr>
+<tr>
+<td>fillMaxSize</td>
+<td>Expands the composable to fill the maximum available space.</td>
+</tr>
+<tr>
+<td>weight</td>
+<td>Distributes space among children in a Row or Column.</td>
+</tr>
+<tr>
+<td>matchParentSize</td>
+<td>Makes a child composable the same size as its parent Box.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interaction Modifiers</strong></p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clickable</td>
+<td>Makes a composable respond to click events.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Moves a composable from its original position.</td>
+</tr>
+<tr>
+<td>draggable</td>
+<td>Enables drag gestures on a composable.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Scroll modifiers</strong></p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Purpose</th>
+<th>Recommended Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>verticalScroll</td>
+<td>Simplifies vertical scrolling for standard lists.</td>
+<td>Common use cases for vertical lists.</td>
+</tr>
+<tr>
+<td>horizontalScroll</td>
+<td>Simplifies horizontal scrolling for standard lists.</td>
+<td>Common use cases for horizontal lists.</td>
+</tr>
+<tr>
+<td>scrollableArea</td>
+<td>A higher-level abstraction that handles content clipping and overscroll effects.</td>
+<td>Building custom scrollable containers.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><a href="https://developer.android.com/develop/ui/compose/modifiers">Modifiers</a></li>
+<li><a href="https://developer.android.com/develop/ui/compose/modifiers-list#Actions">List of Modifiers</a></li>
+</ul>
+<h2 id="5-theming-and-styling">5. Theming and Styling</h2>
 <p>It's very easy to apply theming and styling in Jetpack Compose. You can use the <code>MaterialTheme</code> composable to apply a material design theme to your app.</p>
 <p></p><div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
