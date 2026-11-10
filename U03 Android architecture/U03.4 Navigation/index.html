@@ -512,6 +512,26 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#the-back-stack" class="md-nav__link">
+    The back stack
+  </a>
+  
+    <nav class="md-nav" aria-label="The back stack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-up-and-back-buttons" class="md-nav__link">
+    The Up and Back buttons
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#routes" class="md-nav__link">
     Routes
   </a>
@@ -519,8 +539,22 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#navigation-3" class="md-nav__link">
+    Navigation 3
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#summary" class="md-nav__link">
     Summary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
   </a>
   
 </li>
@@ -623,6 +657,26 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#the-back-stack" class="md-nav__link">
+    The back stack
+  </a>
+  
+    <nav class="md-nav" aria-label="The back stack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-up-and-back-buttons" class="md-nav__link">
+    The Up and Back buttons
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#routes" class="md-nav__link">
     Routes
   </a>
@@ -630,8 +684,22 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#navigation-3" class="md-nav__link">
+    Navigation 3
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#summary" class="md-nav__link">
     Summary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
   </a>
   
 </li>
@@ -687,6 +755,11 @@
 <td>Route</td>
 <td>Uniquely identifies a destination and any data required by it.<br>You can navigate using routes. Routes take you to destinations.</td>
 <td>Any serializable data type.</td>
+</tr>
+<tr>
+<td>Back stack</td>
+<td>A collection of destinations that the user has visited. The back stack allows users to navigate backward through their history of destinations.</td>
+<td><a href="https://developer.android.com/reference/androidx/navigation/NavBackStackEntry"><code>NavBackStackEntry</code></a></td>
 </tr>
 </tbody>
 </table>
@@ -806,6 +879,22 @@
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></tbody></table></div>
+<h2 id="the-back-stack">The back stack</h2>
+<p>The NavController holds a "back stack" that contains the destinations the user has visited. As the user navigates to screens throughout your app, the NavController adds and removes destinations to and from the back stack.</p>
+<p>In being a stack, the back stack is a "last in, first out" data structure. The NavController therefore pushes items to and pops items from the top of the stack.</p>
+<p>These are the core facts you should consider regarding the behavior of the back stack:</p>
+<ul>
+<li><strong>First destination</strong>: When the user opens the app, the NavController pushes the first destination to the top of the back stack.</li>
+<li><strong>Pushing to the stack</strong>: Each call <a href="https://developer.android.com/reference/androidx/navigation/NavController#navigate(int)">NavController.navigate()</a> pushes the given destination to the top of the stack.</li>
+<li><strong>Popping top destination</strong>: Tapping Up or Back calls the <a href="https://developer.android.com/reference/androidx/navigation/NavController#navigateUp()">NavController.navigateUp()</a> and <a href="https://developer.android.com/reference/androidx/navigation/NavController#popBackStack()">NavController.popBackStack()</a> methods, respectively. They pop the top destination off the stack.
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/navigation-principles-deep-linking.png" data-desc-position="bottom"><img alt="Back stack diagram" src="../images/navigation-principles-deep-linking.png"></a></li>
+</ul>
+<h3 id="the-up-and-back-buttons">The Up and Back buttons</h3>
+<p>The <strong>Back button</strong> appears in the <strong>system navigation bar</strong> at the bottom of the screen and is used to navigate in reverse-chronological order through the history of screens the user has recently worked with. When you press the Back button, the current destination is popped off the top of the back stack, and you then navigate to the previous destination.</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/navigation-up-back.png" data-desc-position="bottom"><img alt="Back button diagram" src="../images/navigation-up-back.png"></a></p>
+<p>The <strong>Up button</strong> appears in the <strong>app bar</strong> at the top of the screen. Within your app's task, the Up and Back buttons behave identically.</p>
+<p>If a user is at the app's start destination, then the Up button does not appear, because the Up button never exits the app. The Back button, however, is shown and does exit the app.</p>
+<p>When your app is launched using a <strong>deep link on another app's task</strong>, Up transitions users back to your app’s task and through a <strong>simulated back stack</strong> and not to the app that triggered the deep link. The Back button, however, does take you back to the other app.</p>
 <h2 id="routes">Routes</h2>
 <p>A route is a string that uniquely identifies a destination in the navigation graph. You can define routes with enum classes for better type safety and organization.</p>
 <div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -832,8 +921,21 @@
 <span class="w">    </span><span class="n">composable</span><span class="p">(</span><span class="n">AppDestinations</span><span class="p">.</span><span class="na">DETAILS</span><span class="p">.</span><span class="na">route</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">DetailsScreen</span><span class="p">(</span><span class="n">navController</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></tbody></table></div>
+<h2 id="navigation-3">Navigation 3</h2>
+<p><strong>Navigation 3</strong> is a library that provides a more advanced navigation framework for Android applications. It builds upon the existing Navigation Architecture Component and offers additional features such as type-safe navigation, improved argument passing, and better support for complex navigation flows.</p>
+<p>Navigation 3 improves upon the original Jetpack Navigation API in the following ways:</p>
+<ul>
+<li>Provides a simpler integration with Compose</li>
+<li>Offers you full control of the back stack</li>
+<li>Makes it possible to create layouts that can read more than one destination from the back stack at the same time, allowing them to adapt to changes in window size and other inputs.</li>
+</ul>
+<p>You can find more information about Navigation3 in the official documentation: <a href="https://developer.android.com/guide/navigation/navigation-3">Navigation3</a>.</p>
 <h2 id="summary">Summary</h2>
 <p>In this unit, you have learned the basics of Android Navigation using Jetpack Compose. You have seen how to set up a navigation controller, create a navigation host, define destinations, and navigate between them using routes. With this knowledge, you can build more complex navigation flows in your Android applications.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://developer.android.com/guide/navigation/principles">Principles of Navigation</a></li>
+</ul>
 
 
 

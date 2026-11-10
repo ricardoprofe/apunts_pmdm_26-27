@@ -502,6 +502,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#0-set-up-the-project" class="md-nav__link">
+    0. Set up the project
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1-create-the-tiptimeresult-and-start-layouts" class="md-nav__link">
     1. Create the TipTimeResult and Start layouts
   </a>
@@ -607,6 +614,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#0-set-up-the-project" class="md-nav__link">
+    0. Set up the project
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1-create-the-tiptimeresult-and-start-layouts" class="md-nav__link">
     1. Create the TipTimeResult and Start layouts
   </a>
@@ -687,7 +701,62 @@
 <li><strong>NavHost</strong>: Composable acting as a container for displaying the current destination of the NavGraph.</li>
 </ul>
 <p>In this guided practice, you'll focus on the NavController and the NavHost. Within the NavHost, you'll define the destinations for the TipTime app's NavGraph.</p>
+<h2 id="0-set-up-the-project">0. Set up the project</h2>
+<p>To include navigation support in your project, add the following dependencies to your app's build.gradle file:</p>
+<div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Kotlin serialization plugin for type safe routes and navigation arguments</span>
+<span class="w">  </span><span class="n">kotlin</span><span class="p">(</span><span class="s">"plugin.serialization"</span><span class="p">)</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="s">"2.0.21"</span>
+<span class="p">}</span>
+
+<span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">nav_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"2.9.5"</span>
+
+<span class="w">  </span><span class="c1">// Jetpack Compose integration</span>
+<span class="w">  </span><span class="n">implementation</span><span class="p">(</span><span class="s">"androidx.navigation:navigation-compose:</span><span class="si">$</span><span class="n">nav_version</span><span class="s">"</span><span class="p">)</span>
+
+<span class="w">  </span><span class="c1">// Views/Fragments integration</span>
+<span class="w">  </span><span class="n">implementation</span><span class="p">(</span><span class="s">"androidx.navigation:navigation-fragment:</span><span class="si">$</span><span class="n">nav_version</span><span class="s">"</span><span class="p">)</span>
+<span class="w">  </span><span class="n">implementation</span><span class="p">(</span><span class="s">"androidx.navigation:navigation-ui:</span><span class="si">$</span><span class="n">nav_version</span><span class="s">"</span><span class="p">)</span>
+
+<span class="w">  </span><span class="c1">// Feature module support for Fragments</span>
+<span class="w">  </span><span class="n">implementation</span><span class="p">(</span><span class="s">"androidx.navigation:navigation-dynamic-features-fragment:</span><span class="si">$</span><span class="n">nav_version</span><span class="s">"</span><span class="p">)</span>
+
+<span class="w">  </span><span class="c1">// Testing Navigation</span>
+<span class="w">  </span><span class="n">androidTestImplementation</span><span class="p">(</span><span class="s">"androidx.navigation:navigation-testing:</span><span class="si">$</span><span class="n">nav_version</span><span class="s">"</span><span class="p">)</span>
+
+<span class="w">  </span><span class="c1">// JSON serialization library, works with the Kotlin serialization plugin</span>
+<span class="w">  </span><span class="n">implementation</span><span class="p">(</span><span class="s">"org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></tbody></table></div>
+<div class="admonition warning">
+<p class="admonition-title">Note:</p>
+<p>This versions work well with the packages used in the Tip Time demo app. It's reccomended that you use the last versions of the libraries in a new project.</p>
+</div>
 <h2 id="1-create-the-tiptimeresult-and-start-layouts">1. Create the TipTimeResult and Start layouts</h2>
+<p>Create a new package inside your <code>ui</code> package called <code>screens</code>.</p>
 <p>Move the <code>Column</code> from inside the <code>TipTimeLayout</code> composable to its own composable function called <code>TipTimeStartScreen</code>. Add parameters for the <code>tipTimeViewModel</code> and <code>modifier</code>.</p>
 <div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -704,9 +773,9 @@
 <span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">TipTimeStartScreen</span><span class="p">(</span>
 <span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">,</span>
-<span class="w">    </span><span class="n">tipTimeViewModel</span><span class="p">:</span><span class="w"> </span><span class="n">TipTimeViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">tipViewModel</span><span class="p">:</span><span class="w"> </span><span class="n">TipViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">(),</span>
 <span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">tipTimeUiState</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">tipTimeViewModel</span><span class="p">.</span><span class="na">uiState</span><span class="p">.</span><span class="na">collectAsState</span><span class="p">()</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">tipUiState</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">tipViewModel</span><span class="p">.</span><span class="na">uiState</span><span class="p">.</span><span class="na">collectAsState</span><span class="p">()</span>
 
 <span class="w">    </span><span class="n">Column</span><span class="p">(</span>
 <span class="w">        </span><span class="p">...</span><span class="w"> </span><span class="c1">// Existing content</span>
@@ -744,9 +813,9 @@
 <span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">TipTimeResultScreen</span><span class="p">(</span>
 <span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">,</span>
-<span class="w">    </span><span class="n">tipTimeViewModel</span><span class="p">:</span><span class="w"> </span><span class="n">TipTimeViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">tipViewModel</span><span class="p">:</span><span class="w"> </span><span class="n">TipViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">(),</span>
 <span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">tipTimeUiState</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">tipTimeViewModel</span><span class="p">.</span><span class="na">uiState</span><span class="p">.</span><span class="na">collectAsState</span><span class="p">()</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">tipUiState</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">tipViewModel</span><span class="p">.</span><span class="na">uiState</span><span class="p">.</span><span class="na">collectAsState</span><span class="p">()</span>
 
 <span class="w">    </span><span class="n">Column</span><span class="p">(</span>
 <span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span>
@@ -757,16 +826,20 @@
 <span class="w">        </span><span class="n">verticalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">Center</span>
 <span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">Text</span><span class="p">(</span>
-<span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">tip_amount</span><span class="p">,</span><span class="w"> </span><span class="n">tipTimeUiState</span><span class="p">.</span><span class="na">tip</span><span class="p">),</span>
+<span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">tip_amount</span><span class="p">,</span><span class="w"> </span><span class="n">tipUiState</span><span class="p">.</span><span class="na">tip</span><span class="p">),</span>
 <span class="w">            </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">typography</span><span class="p">.</span><span class="na">titleLarge</span><span class="p">,</span>
 <span class="w">        </span><span class="p">)</span>
 <span class="w">        </span><span class="n">Text</span><span class="p">(</span>
-<span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">total</span><span class="p">,</span><span class="w"> </span><span class="n">tipTimeUiState</span><span class="p">.</span><span class="na">total</span><span class="p">),</span>
+<span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">total</span><span class="p">,</span><span class="w"> </span><span class="n">tipUiState</span><span class="p">.</span><span class="na">total</span><span class="p">),</span>
 <span class="w">            </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">typography</span><span class="p">.</span><span class="na">titleLarge</span><span class="p">,</span>
 <span class="w">        </span><span class="p">)</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></tbody></table></div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>At this point we need the state and the viewModel to have the <strong>total</strong> (bill amount + tip amount). Do the necessaru changes in these files to get the total as a formatted string. </p>
+</div>
 <h2 id="2-defining-routes">2. Defining routes</h2>
 <p>In the TipTime app, you will have the following routes:</p>
 <ul>
@@ -851,11 +924,11 @@
 
 <span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">TipTimeLayout</span><span class="p">(</span>
-<span class="w">    </span><span class="n">tipTimeViewModel</span><span class="p">:</span><span class="w"> </span><span class="n">TipTimeViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">tipTimeViewModel</span><span class="p">:</span><span class="w"> </span><span class="n">TipViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">(),</span>
 <span class="w">    </span><span class="n">navController</span><span class="p">:</span><span class="w"> </span><span class="n">NavHostController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberNavController</span><span class="p">()</span>
 <span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">Scaffold</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">innerPadding</span><span class="w"> </span><span class="o">-&gt;</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">tipTimeUiState</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">tipTimeViewModel</span><span class="p">.</span><span class="na">uiState</span><span class="p">.</span><span class="na">collectAsState</span><span class="p">()</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">tipUiState</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">tipViewModel</span><span class="p">.</span><span class="na">uiState</span><span class="p">.</span><span class="na">collectAsState</span><span class="p">()</span>
 
 <span class="w">        </span><span class="n">NavHost</span><span class="p">(</span>
 <span class="w">            </span><span class="n">navController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">navController</span><span class="p">,</span>
@@ -920,7 +993,7 @@
 <span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">composable</span><span class="p">(</span><span class="w"> </span><span class="n">route</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Routes</span><span class="p">.</span><span class="na">Start</span><span class="p">.</span><span class="na">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">TipTimeStartScreen</span><span class="p">(</span>
-<span class="w">                </span><span class="n">tipTimeViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tipTimeViewModel</span><span class="p">,</span>
+<span class="w">                </span><span class="n">tipViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tipViewModel</span><span class="p">,</span>
 <span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
 <span class="w">                    </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">()</span>
 <span class="w">                    </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">40.</span><span class="n">dp</span><span class="p">)</span>
@@ -929,7 +1002,7 @@
 <span class="w">        </span><span class="p">}</span>
 <span class="w">        </span><span class="n">composable</span><span class="p">(</span><span class="n">route</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Routes</span><span class="p">.</span><span class="na">TipResult</span><span class="p">.</span><span class="na">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">TipTimeResultScreen</span><span class="p">(</span>
-<span class="w">                </span><span class="n">tipTimeViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tipTimeViewModel</span><span class="p">,</span>
+<span class="w">                </span><span class="n">tipViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tipViewModel</span><span class="p">,</span>
 <span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
 <span class="w">                    </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">()</span>
 <span class="w">                    </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">40.</span><span class="n">dp</span><span class="p">)</span>
@@ -969,9 +1042,9 @@
 <span class="kd">fun</span><span class="w"> </span><span class="nf">TipTimeStartScreen</span><span class="p">(</span>
 <span class="w">    </span><span class="n">onNextButtonClicked</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="p">,</span><span class="w"> </span><span class="c1">//ADD THIS</span>
 <span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">,</span>
-<span class="w">    </span><span class="n">tipTimeViewModel</span><span class="p">:</span><span class="w"> </span><span class="n">TipTimeViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">tipViewModel</span><span class="p">:</span><span class="w"> </span><span class="n">TipViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">(),</span>
 <span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">tipTimeUiState</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">tipTimeViewModel</span><span class="p">.</span><span class="na">uiState</span><span class="p">.</span><span class="na">collectAsState</span><span class="p">()</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">tipUiState</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">tipViewModel</span><span class="p">.</span><span class="na">uiState</span><span class="p">.</span><span class="na">collectAsState</span><span class="p">()</span>
 
 <span class="w">    </span><span class="n">Column</span><span class="p">(</span>
 <span class="w">        </span><span class="c1">// Existing content</span>
@@ -1015,9 +1088,9 @@
 <span class="kd">fun</span><span class="w"> </span><span class="nf">TipTimeResultScreen</span><span class="p">(</span>
 <span class="w">    </span><span class="n">onBackButtonClicked</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="p">,</span><span class="w"> </span><span class="c1">//ADD THIS</span>
 <span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">,</span>
-<span class="w">    </span><span class="n">tipTimeViewModel</span><span class="p">:</span><span class="w"> </span><span class="n">TipTimeViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">tipViewModel</span><span class="p">:</span><span class="w"> </span><span class="n">TipViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">(),</span>
 <span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">tipTimeUiState</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">tipTimeViewModel</span><span class="p">.</span><span class="na">uiState</span><span class="p">.</span><span class="na">collectAsState</span><span class="p">()</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">tipUiState</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">tipViewModel</span><span class="p">.</span><span class="na">uiState</span><span class="p">.</span><span class="na">collectAsState</span><span class="p">()</span>
 
 <span class="w">    </span><span class="n">Column</span><span class="p">(</span>
 <span class="w">       </span><span class="c1">// Existing content</span>
@@ -1069,7 +1142,7 @@
 <span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">composable</span><span class="p">(</span><span class="w"> </span><span class="n">route</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Routes</span><span class="p">.</span><span class="na">Start</span><span class="p">.</span><span class="na">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">TipTimeStartScreen</span><span class="p">(</span>
-<span class="w">            </span><span class="n">tipTimeViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tipTimeViewModel</span><span class="p">,</span>
+<span class="w">            </span><span class="n">tipViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tipViewModel</span><span class="p">,</span>
 <span class="w">            </span><span class="n">onNextButtonClicked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">navController</span><span class="p">.</span><span class="na">navigate</span><span class="p">(</span><span class="n">Routes</span><span class="p">.</span><span class="na">TipResult</span><span class="p">.</span><span class="na">name</span><span class="p">)</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="c1">//ADD THIS</span>
 <span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
 <span class="w">                </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">()</span>
@@ -1078,7 +1151,7 @@
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="n">composable</span><span class="p">(</span><span class="n">route</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Routes</span><span class="p">.</span><span class="na">TipResult</span><span class="p">.</span><span class="na">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">TipTimeResultScreen</span><span class="p">(</span>
-<span class="w">            </span><span class="n">tipTimeViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tipTimeViewModel</span><span class="p">,</span>
+<span class="w">            </span><span class="n">tipViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tipViewModel</span><span class="p">,</span>
 <span class="w">            </span><span class="n">onBackButtonClicked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">navController</span><span class="p">.</span><span class="na">navigate</span><span class="p">(</span><span class="n">Routes</span><span class="p">.</span><span class="na">Start</span><span class="p">.</span><span class="na">name</span><span class="p">)</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="c1">//ADD THIS</span>
 <span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
 <span class="w">                </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">()</span>
@@ -1090,7 +1163,7 @@
 <p>The <code>onNextButtonClicked</code> lambda navigates to the <code>TipResult</code> route when the button is clicked, and the <code>onBackButtonClicked</code> lambda navigates back to the <code>Start</code> route.</p>
 <p>Run your app again. You should be able to navigate between the Start and Result screens using the buttons.</p>
 <h2 id="6-add-a-topappbar-with-navigation-support">6. Add a TopAppBar with navigation support</h2>
-<p>First, create a new composable function called <code>TipTimeTopBar</code> in the <code>TipTimeLayout.kt</code> file (create it in a separate file if you want).</p>
+<p>First, create a new composable function called <code>TipTimeTopBar</code> in the <code>TipTimeLayout.kt</code> file (create it in the components folder).</p>
 <div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1197,7 +1270,7 @@
 
 <span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">TipTimeLayout</span><span class="p">(</span>
-<span class="w">    </span><span class="n">tipTimeViewModel</span><span class="p">:</span><span class="w"> </span><span class="n">TipTimeViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">tipViewModel</span><span class="p">:</span><span class="w"> </span><span class="n">TipViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">(),</span>
 <span class="w">    </span><span class="n">navController</span><span class="p">:</span><span class="w"> </span><span class="n">NavHostController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberNavController</span><span class="p">()</span>
 <span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// Get current back stack entry</span>
@@ -1231,6 +1304,10 @@
 <span class="w">        </span><span class="p">...</span>
 </code></pre></div></td></tr></tbody></table></div>
 <p>Check the app again. You should see the TopAppBar with the title of the current screen. When you navigate to the Result screen, the back button should appear, allowing you to navigate back to the Start screen.</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Note how, if we push several times the Next and Back butttons, the two screens are added to the back stack multiple times. This is not the desired behavior. How can we fix this?</p>
+</div>
 <h2 id="7-add-a-share-button">7. Add a share button</h2>
 <p>We want to add a share button to the TopAppBar on the Result screen. This button will allow users to share the tip amount and total bill using other apps on their device.</p>
 <p>To do that, we must first create an intent to share the text. The intent type that we need is <code>ACTION_SEND</code> with MIME type <code>"text/plain"</code>.</p>
@@ -1257,7 +1334,7 @@
 
 <span class="k">import</span><span class="w"> </span><span class="nn">android.content.Intent</span>
 
-<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">createShareIntent</span><span class="p">(</span><span class="n">context</span><span class="p">:</span><span class="w"> </span><span class="n">Context</span><span class="p">,</span><span class="w"> </span><span class="n">tip</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">total</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">createShareIntent</span><span class="p">(</span><span class="n">context</span><span class="p">:</span><span class="w"> </span><span class="n">Context</span><span class="p">,</span><span class="w"> </span><span class="n">tip</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">total</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">shareText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">tip_amount_total_bill</span><span class="p">,</span><span class="w"> </span><span class="n">tip</span><span class="p">,</span><span class="w"> </span><span class="n">total</span><span class="p">)</span>
 <span class="w">    </span><span class="c1">// Create an ACTION_SEND implicit intent with order details in the intent extras</span>
 <span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">intent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Intent</span><span class="p">(</span><span class="n">Intent</span><span class="p">.</span><span class="na">ACTION_SEND</span><span class="p">).</span><span class="na">apply</span><span class="w"> </span><span class="p">{</span>
@@ -1347,9 +1424,13 @@
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
 <span class="normal">10</span>
-<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// TipTimeLayout.kt</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// TipTimeLayout.kt</span>
 
 <span class="p">...</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LocalContext</span><span class="p">.</span><span class="na">current</span><span class="w"> </span><span class="c1">//ADD THIS</span>
+
 <span class="n">Scaffold</span><span class="p">(</span>
 <span class="w">        </span><span class="n">topBar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">TipTimeTopBar</span><span class="p">(</span>
@@ -1362,7 +1443,7 @@
 <p>The <code>showShare</code> boolean is true only when the current screen is the <code>TipResult</code> screen. The <code>onShareClicked</code> lambda calls the <code>createShareIntent</code> function with the tip and total values from the <code>uiState</code>.</p>
 <p>This should work. Launch your app and check if the share button appears on the Result screen. When clicked, it should open a chooser dialog with available apps to share the tip amount and total bill.</p>
 <h2 id="source-code">Source code</h2>
-<p>You can find the complete source code for this guided practice on GitHub: <a href="https://github.com/ricardoprofe/tiptime_PMDM_25_26/tree/navigation">TipTime with Navigation</a>, branch <code>navigation</code>.</p>
+<p>You can find the complete source code for this guided practice on GitHub: <a href="https://github.com/ricardoprofe/tiptime_PMDM_26_27/tree/navigation">TipTime with Navigation</a>, branch <code>navigation</code>.</p>
 
 
 
