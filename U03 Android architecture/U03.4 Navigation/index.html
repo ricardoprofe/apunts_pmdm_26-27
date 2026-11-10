@@ -895,6 +895,7 @@
 <p>The <strong>Up button</strong> appears in the <strong>app bar</strong> at the top of the screen. Within your app's task, the Up and Back buttons behave identically.</p>
 <p>If a user is at the app's start destination, then the Up button does not appear, because the Up button never exits the app. The Back button, however, is shown and does exit the app.</p>
 <p>When your app is launched using a <strong>deep link on another app's task</strong>, Up transitions users back to your app’s task and through a <strong>simulated back stack</strong> and not to the app that triggered the deep link. The Back button, however, does take you back to the other app.</p>
+<p>If you want to navigate back, remember that you have the <code>navigateUp()</code> method in the <code>NavController</code> to handle Up navigation and the <code>popBackStack()</code> method to handle Back navigation.</p>
 <h2 id="routes">Routes</h2>
 <p>A route is a string that uniquely identifies a destination in the navigation graph. You can define routes with enum classes for better type safety and organization.</p>
 <div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
